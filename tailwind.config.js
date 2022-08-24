@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        '112': '28rem',
-        '128': '32rem',
+        112: "28rem",
+        128: "32rem",
       },
       fontFamily: {
         sans: ["Roboto Condensed", "sans-serif"],

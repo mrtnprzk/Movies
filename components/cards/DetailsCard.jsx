@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 const DetailsCard = (props) => {
-
   const {Poster, Title, imdbRating, Genre, Country, Year, Runtime, Plot, Director, Writer, Actors} = props.movie
   const {isFavorite} = props
 
@@ -53,7 +52,7 @@ const DetailsCard = (props) => {
             <span className="font-semibold">Actors:</span> {Actors}
           </p>
         </div>
-        <div className="flex justify-center mt-5">
+        <div className="flex justify-center mt-10">
           {!isFavorite ? (
             <button
               onClick={props.add}
@@ -63,9 +62,9 @@ const DetailsCard = (props) => {
             </button>
           ) : (
             <Link href="/favorite">
-              <button className="px-5 rounded-full py-2 border border-black bg-yellow-400 hover:scale-105 hover:shadow-md duration-500">
-                Already in Favorite
-              </button>
+              <a className="px-5 rounded-full py-2 border border-black bg-yellow-400 hover:scale-105 hover:shadow-md duration-500">
+                Already Favorited
+              </a>
             </Link>
           )}
         </div>

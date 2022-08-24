@@ -1,13 +1,12 @@
 import React from "react";
 
 const SearchBar = (props) => {
-
-    const { searchValue, searchHandler } = props;
+  const { searchValue, searchHandler } = props;
 
   return (
     <div className="flex flex-col items-center p-10 my-4">
       <h1 className="text-7xl font-bold text-center max-w-lg">
-        Search for Your <span className="text-red-600">Favourite Movie</span>!
+        Search for Your <span className="text-red-600">Favourite Movie</span>
       </h1>
       <div>
         <input

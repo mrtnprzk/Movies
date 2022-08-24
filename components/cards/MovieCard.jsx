@@ -2,9 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 export const MovieCard = (props) => {
-
-    const { searchResult } = props;
-    const noImage = "/images/no-image.jpg";
+  const { searchResult } = props;
+  const noImage = "/images/no-image.jpg";
 
   return (
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -24,11 +23,11 @@ export const MovieCard = (props) => {
                 {result.Title} ({result.Year})
               </h2>
               <Link href={`/${result.imdbID}`}>
-                <button
+                <a
                   className={`px-5 rounded-full py-2 border border-black hover:bg-red-600 hover:text-white hover:shadow-md duration-500`}
                 >
                   Detail
-                </button>
+                </a>
               </Link>
             </div>
           </div>

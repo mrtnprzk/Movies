@@ -3,10 +3,15 @@ import Link from "next/link";
 
 const FavoriteCard = (props) => {
     const { Title, Country, Genre, Poster, Year, Runtime, imdbID, imdbRating } = props.movie;
+    const noImage = "/images/no-image.jpg";
 
   return (
     <div className="flex w-112 rounded-md space-x-5 bg-white border border-gray-300 shadow-md p-4 m-2">
-      <img className="rounded w-30 h-40 my-auto" src={Poster} alt={Title} />
+      <img
+        className="rounded w-30 h-40 my-auto"
+        src={Poster != "N/A" ? Poster : noImage}
+        alt={Title}
+      />
 
       <div className="flex flex-col justify-between w-full">
         <div className="flex justify-between items-start w-full">
@@ -34,12 +39,12 @@ const FavoriteCard = (props) => {
 
         <div className="text-center mt-2 space-x-3">
           <Link href={`/${imdbID}`}>
-            <button className="px-5 rounded-full py-2 border border-black hover:bg-red-500 hover:text-white duration-300">
+            <a className="px-5 rounded-full py-2 border border-black hover:bg-red-500 hover:text-white duration-300">
               Detail
-            </button>
+            </a>
           </Link>
           <button
-            onClick={()=>props.deleteHanlder(imdbID)}
+            onClick={() => props.deleteHanlder(imdbID)}
             className="px-5 rounded-full py-2 border border-black bg-black text-white hover:scale-105 duration-300"
           >
             Delete

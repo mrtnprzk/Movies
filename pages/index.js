@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { MovieCard } from "../components/cards/MovieCard";
-import ParizekCard from "../components/cards/ParizekCard";
+import NoResultCard from "../components/cards/NoResultCard";
 import NextPrevPage from "../components/elements/NextPrevPage";
 import SearchBar from "../components/elements/SearchBar";
+import Spinner from "../components/elements/Spinner";
 
 export default function Home() {
 
    const [searchResult, setSearchResults] = useState(null);
    const [searchValue, setSearchValue] = useState("");
    const [pageNumber, setPageNumber] = useState(1);
+   const [isLoading, setIsLoading] = useState(false)
 
    const urlSearch = `http://www.omdbapi.com/?apikey=9e8f472a&s=${searchValue}&page=${pageNumber}`;
 
-   //fetching data for search
    const fetchDataSearch = async () => {
      const resp = await fetch(urlSearch);
      const result = await resp.json();
@@ -20,9 +21,11 @@ export default function Home() {
    };
 
    useEffect(() => {
-     const timer = setTimeout(() => {
+      setIsLoading(true);
+      const timer = setTimeout(() => {
        fetchDataSearch();
-     }, 300);
+       setIsLoading(false);
+     }, 500);
 
      return () => {
        clearTimeout(timer);
@@ -47,7 +50,9 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center">
       <SearchBar searchValue={searchValue} searchHandler={searchHandler} />
-      {searchResult ? (
+      {isLoading ? (
+        <Spinner />
+      ) : searchResult ? (
         <>
           <MovieCard searchResult={searchResult} />
           <NextPrevPage
@@ -58,7 +63,7 @@ export default function Home() {
           />
         </>
       ) : (
-        <ParizekCard />
+        <NoResultCard />
       )}
     </div>
   );

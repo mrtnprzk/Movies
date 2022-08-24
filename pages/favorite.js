@@ -3,28 +3,27 @@ import {useState, useEffect} from "react";
 import FavoriteCard from "../components/cards/FavoriteCard";
 
 export default function FavoritePage() {
-
-  const [favoriteMovies, setFavoriteMovies] = useState(
-    JSON.parse(localStorage.getItem("favorite")) || []
-  );
-  // const [favoriteMovies, setFavoriteMovies] = useState([]);
+  
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   const deleteHanlder = (id) => {
     localStorage.removeItem("favorite");
-    setFavoriteMovies(allMovies => {
+    setFavoriteMovies((allMovies) => {
       return allMovies.filter((element) => {
         const index = element.imdbID;
-        return index !== id
-      })
-    })
-  }
-
-  // useEffect(() => {
-  //   setFavoriteMovies(JSON.parse(localStorage.getItem("favorite")));
-  // }, [])
+        return index !== id;
+      });
+    });
+  };
 
   useEffect(() => {
-    localStorage.setItem("favorite", JSON.stringify(favoriteMovies));
+    setFavoriteMovies(JSON.parse(localStorage.getItem("favorite")) || []);
+  }, []);
+
+  useEffect(() => {
+    if (favoriteMovies.length != 0) {
+      window.localStorage.setItem("favorite", JSON.stringify(favoriteMovies));
+    }
   }, [favoriteMovies]);
 
   return (
@@ -32,8 +31,14 @@ export default function FavoritePage() {
       <Head>
         <title>Favorite</title>
       </Head>
-      {favoriteMovies.length == 0 && (
-        <h3 className="font-bold text-6xl mt-20">Your Favorite List is <span className="text-red-600">Empty</span>!</h3>
+      {favoriteMovies?.length == 0 ? (
+        <h3 className="font-bold text-6xl px-5 mt-10 text-center">
+          Your Favorite List is <span className="text-red-600">Empty</span>!
+        </h3>
+      ) : (
+        <h3 className="font-bold text-6xl px-5 mt-10 text-center">
+          Your Favorite List.
+        </h3>
       )}
       <div className="grid grid-cols-1 lg:grid-cols-2 my-5">
         {favoriteMovies.map((movie) => (
