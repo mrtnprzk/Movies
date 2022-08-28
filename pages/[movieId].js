@@ -19,20 +19,31 @@ export default function MovieIdPage() {
     setFavoriteMovies(JSON.parse(localStorage.getItem("favorite")) || []);
   }, []);
 
-  useEffect(() => {
-    fetchMovie()
+  const isFavoriteHandler = () => {
     favoriteMovies.map((fav) => {
       if (fav.imdbID === movieId) {
         setIsFavorite(true);
       }
     });
+  }
+
+  useEffect(() => {
+    fetchMovie()
+    isFavoriteHandler();
   }, [movieId]);
 
   const fetchMovie = async () => {
-    const resp = await fetch(urlMovie);
-    const result = await resp.json();
-    result && setMovie(result);
-    setIsLoading(false);
+    try {
+      const resp = await fetch(urlMovie);
+      const result = await resp.json();
+      if (result.Error) {
+        return router.push("/404");
+      }
+      result && setMovie(result);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   function add() {
@@ -43,11 +54,7 @@ export default function MovieIdPage() {
   useEffect(() => {
     if (favoriteMovies.length != 0) {
       window.localStorage.setItem("favorite", JSON.stringify(favoriteMovies));
-      favoriteMovies.map((fav) => {
-        if (fav.imdbID === movieId) {
-          setIsFavorite(true);
-        }
-      });
+      isFavoriteHandler();
     }
   }, [favoriteMovies]);
 
@@ -58,7 +65,7 @@ export default function MovieIdPage() {
       </Head>
 
       {isLoading ? (
-        <Spinner/>
+        <Spinner />
       ) : (
         <DetailsCard movie={movie} add={add} isFavorite={isFavorite} />
       )}

@@ -24,17 +24,27 @@ const ParizekCard = () => {
 
         <div className="overflow-hidden transition duration-500 group-focus:max-h-screen max-h-0 ease">
           <div className="my-5">
-              <Image
-                src="/images/parizek.jpg"
-                alt="Martin Parizek"
-                width={250}
-                height={250}
-                className="rounded-full"
-              />
+            <Image
+              src="/images/parizek.jpg"
+              alt="Martin Parizek"
+              width={250}
+              height={250}
+              className="rounded-full"
+            />
           </div>
-          <p className="text-lg font-semibold">
-            Hi! My name is Martin Parizek and I created this project in August
-            2022 to shw my skills and maybe find a right company for me.
+          <p className="text-lg text-gray-700 font-semibold">
+            Hi! My name is Martin Parizek and I created this side project in
+            August 2022 to show what I learnt while working mainly with React,
+            Next.js and Tailwind CSS.
+            I thought about a project that could easily make people find their
+            favourite movies while having a space to store them at the same
+            time. That is why I build this user-friendly app where you can
+            search for whatever movie you have in mind, and keep it safe in a
+            favorite list. Try it, enjoy it and feel free to leave any
+            suggestion on what I could improve on the coding side. Lastly, if
+            you want to get to know me a little more, you can check the personal
+            info at the Footer. <br />
+            Thanks for reading, hope you like it! 😊
           </p>
         </div>
       </div>

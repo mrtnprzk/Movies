@@ -27,28 +27,30 @@ export default function FavoritePage() {
   }, [favoriteMovies]);
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <>
       <Head>
         <title>Favorite</title>
       </Head>
-      {favoriteMovies?.length == 0 ? (
-        <h3 className="font-bold text-6xl px-5 mt-10 text-center">
-          Your Favorite List is <span className="text-red-600">Empty</span>!
-        </h3>
-      ) : (
-        <h3 className="font-bold text-6xl px-5 mt-10 text-center">
-          Your Favorite List.
-        </h3>
-      )}
-      <div className="grid grid-cols-1 lg:grid-cols-2 my-5">
-        {favoriteMovies.map((movie) => (
-          <FavoriteCard
-            key={movie.imdbID}
-            movie={movie}
-            deleteHanlder={deleteHanlder}
-          />
-        ))}
+      <div className="flex flex-col justify-center items-center">
+        {favoriteMovies?.length == 0 ? (
+          <h3 className="font-bold text-6xl px-5 mt-10 text-center">
+            Your Favorite List is <span className="text-red-600">Empty</span>!
+          </h3>
+        ) : (
+          <h3 className="font-bold text-6xl px-5 mt-10 text-center">
+            Your Favorite List.
+          </h3>
+        )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 my-5">
+          {favoriteMovies.map((movie) => (
+            <FavoriteCard
+              key={movie.imdbID}
+              movie={movie}
+              deleteHanlder={deleteHanlder}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

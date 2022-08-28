@@ -7,33 +7,38 @@ import Spinner from "../components/elements/Spinner";
 
 export default function Home() {
 
-   const [searchResult, setSearchResults] = useState(null);
-   const [searchValue, setSearchValue] = useState("");
-   const [pageNumber, setPageNumber] = useState(1);
-   const [isLoading, setIsLoading] = useState(false)
+  const [searchResult, setSearchResults] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+  const [isLoading, setIsLoading] = useState(false)
 
-   const urlSearch = `http://www.omdbapi.com/?apikey=9e8f472a&s=${searchValue}&page=${pageNumber}`;
+  const urlSearch = `http://www.omdbapi.com/?apikey=9e8f472a&s=${searchValue}&page=${pageNumber}`;
 
-   const fetchDataSearch = async () => {
-     const resp = await fetch(urlSearch);
-     const result = await resp.json();
-     result && setSearchResults(result.Search);
-   };
+  const fetchDataSearch = async () => {
+    try {
+      const resp = await fetch(urlSearch);
+      const result = await resp.json();
+      result && setSearchResults(result.Search);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-   useEffect(() => {
+  useEffect(() => {
       setIsLoading(true);
       const timer = setTimeout(() => {
-       fetchDataSearch();
-       setIsLoading(false);
-     }, 500);
+      fetchDataSearch();
+      setIsLoading(false);
+    }, 500);
 
-     return () => {
-       clearTimeout(timer);
-     };
-   }, [searchValue, pageNumber]);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchValue, pageNumber]);
 
   const searchHandler = (e) => {
-    setSearchValue(e.target.value), 
+    const value = e.target.value;
+    setSearchValue(value);
     setPageNumber(1);
   }
 
@@ -49,12 +54,15 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-center items-center">
+    
       <SearchBar searchValue={searchValue} searchHandler={searchHandler} />
+  
       {isLoading ? (
         <Spinner />
       ) : searchResult ? (
         <>
           <MovieCard searchResult={searchResult} />
+
           <NextPrevPage
             searchResult={searchResult}
             pageNumber={pageNumber}
@@ -65,6 +73,7 @@ export default function Home() {
       ) : (
         <NoResultCard />
       )}
+
     </div>
   );
 }
