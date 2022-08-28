@@ -12,7 +12,7 @@ export default function Home() {
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false)
 
-  const urlSearch = `http://www.omdbapi.com/?apikey=9e8f472a&s=${searchValue}&page=${pageNumber}`;
+  const urlSearch = `https://www.omdbapi.com/?apikey=9e8f472a&s=${searchValue}&page=${pageNumber}`;
 
   const fetchDataSearch = async () => {
     try {

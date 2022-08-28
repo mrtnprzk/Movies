@@ -13,7 +13,7 @@ export default function MovieIdPage() {
   const [isFavorite, setIsFavorite] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
 
-  const urlMovie = `http://www.omdbapi.com/?apikey=9e8f472a&i=${movieId}`;
+  const urlMovie = `https://www.omdbapi.com/?apikey=9e8f472a&i=${movieId}`;
 
   useEffect(() => {
     setFavoriteMovies(JSON.parse(localStorage.getItem("favorite")) || []);
