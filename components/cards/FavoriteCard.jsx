@@ -6,7 +6,7 @@ const FavoriteCard = (props) => {
     const noImage = "/images/no-image.jpg";
 
   return (
-    <div className="flex w-96 md:w-112 rounded-md space-x-5 bg-white border border-gray-300 shadow-md p-4 m-2">
+    <div className="flex w-88 md:w-112 rounded-md space-x-5 bg-white border border-gray-300 shadow-md p-4 m-2">
       <img
         className="rounded w-30 h-40 my-auto"
         src={Poster != "N/A" ? Poster : noImage}
