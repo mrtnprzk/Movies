@@ -12,7 +12,7 @@ const SearchBar = (props) => {
         <input
           name="search"
           type="search"
-          className="w-56 text-xl p-4 mt-8 pl-8 border text-center border-gray-300 placeholder-gray-500 text-gray-900 rounded-full focus:outline-none focus:ring-red-500 focus:border-red-500"
+          className="w-56 text-xl p-4 mt-8  border text-center border-gray-300 placeholder-gray-500 text-gray-900 rounded-full focus:outline-none focus:ring-red-500 focus:border-red-500"
           placeholder="Let's Find It!"
           value={searchValue}
           onChange={searchHandler}

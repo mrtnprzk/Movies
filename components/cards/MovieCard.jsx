@@ -10,7 +10,7 @@ export const MovieCard = (props) => {
       {searchResult.map((result) => (
         <div
           key={result.imdbID}
-          className="flex flex-col max-w-sm rounded-xl overflow-hidden bg-white border border-gray-300 m-4 shadow-md  duration-200 hover:scale-105 hover:shadow-xl"
+          className="flex flex-col max-w-sm rounded-xl overflow-hidden bg-white border border-gray-300 m-4 shadow-md  duration-200 md:hover:scale-105 hover:shadow-xl"
         >
           <img
             src={result.Poster != "N/A" ? result.Poster : noImage}

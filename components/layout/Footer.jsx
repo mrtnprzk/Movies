@@ -5,11 +5,9 @@ const Footer = () => {
   const year = date.getFullYear();
 
   return (
-    <footer className="bg-white px-4 py-6 mt-auto border border-t-gray-300">
+    <footer className="bg-white px-4 py-6 mt-auto border border-t-gray-300 min-w-fit">
       <div className="flex flex-col justify-between items-center text-gray-600 space-y-4 md:flex-row md:space-y-0 md:max-w-4xl md:mx-auto">
-        <span className="text-lg">
-          App Created by MRTNPRZK. ©{year} All Rights Reserved.
-        </span>
+        <span className="text-lg">©{year} App Created by MRTNPRZK.</span>
         <div className="flex justify-center items-center space-x-6">
           <a
             href="https://www.instagram.com/martinparizek/"
